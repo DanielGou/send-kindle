@@ -8,21 +8,17 @@ var mail = nodemailer.createTransport({
     }
 })
 
-var mailOptions = {
-    from: 'sendfiletokindle@gmail.com',
-    to: 'danielpraiadorosa@gmail.com',
-    subject: 'Sending fur server',
-    text: 'That is worked'
-}
-
-function send(){
+function send(mailOptions, cb){
 
     mail.sendMail(mailOptions, (error, info)=>{
-        if(error){
-            console.log(error)
-        }else{
-            console.log('Email send: ' + info.response)
-        }
+
+        return cb(error, info)
+
+        // if(error){
+        //     return response(error)
+        // }else{
+        //     return response(info.response)
+        // }
     })
     
 }
