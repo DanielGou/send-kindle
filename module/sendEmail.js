@@ -13,12 +13,6 @@ function send(mailOptions, cb){
     mail.sendMail(mailOptions, (error, info)=>{
 
         return cb(error, info)
-
-        // if(error){
-        //     return response(error)
-        // }else{
-        //     return response(info.response)
-        // }
     })
     
 }

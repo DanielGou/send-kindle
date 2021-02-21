@@ -2,6 +2,7 @@ const express = require('express')
 const bodyPareser = require('body-parser')
 const send = require('./module/sendEmail')
 const fileUpload = require('express-fileupload')
+const deleteFile = require('./module/deleteFile')
 
 const app = express()
 
@@ -14,33 +15,13 @@ app.get('/', (req,res)=>{
     res.sendFile('index')
 })
 
-app.post('/send',async (req,res)=>{
 
-    const { email, title, text } = req.body
-        
-    let mailOptions = {
-        from: 'sendfiletokindle@gmail.com',
-        to: email,
-        subject: title,
-        text: text
-    }
-    
-    await send(mailOptions, cb)
-
-    function cb(error, info){
-        console.log(error, info)
-        if(error === null){
-          res.json({ status: 'ok' })    
-        }else{
-            res.json({ status: 'error',  error})
-        }
-    }
-})
-
-app.post('/upload', (req,res)=>{
+app.post('/sendEmail', async (req,res)=>{
 
     let uploadPath;
     let file;
+
+    const email = req.body.email
 
     if(!req.files || Object.keys(req.files).length === 0){
         return res.status(400).send('No file were uploaded.')
@@ -50,14 +31,39 @@ app.post('/upload', (req,res)=>{
 
     uploadPath = __dirname + '/uploadPath/' + file.name
 
-    file.mv(uploadPath, (err)=>{
+    await file.mv(uploadPath, (err)=>{
         if(err){
             return res.status(500).send(err)
-        }else{
-            res.send('File uploaded')
         }
     })
 
+        
+    let mailOptions = {
+        from: 'sendfiletokindle@gmail.com',
+        to: email,
+        subject: file.name,
+        text: file.name,
+        attachments:[
+            {  
+                path: uploadPath
+            }
+        ]
+    }
+
+    await send(mailOptions, cb)
+
+    function cb(error, info){
+        console.log(error, info)
+        if(error === null){
+            res.redirect('/success')  
+        }else{
+            res.json({ status: 'error',  error})
+        }
+    }
+})
+
+app.get('/success', (req,res)=>{
+    res.sendFile('/success')
 })
 
 app.listen(3000, ()=>{
