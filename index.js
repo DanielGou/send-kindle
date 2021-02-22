@@ -3,6 +3,7 @@ const bodyPareser = require('body-parser')
 const send = require('./module/sendEmail')
 const fileUpload = require('express-fileupload')
 const deleteFile = require('./module/deleteFile')
+const verifyTypeFile = require('./module/verifyTypeFile')
 
 const app = express()
 
@@ -30,6 +31,29 @@ app.post('/sendEmail', async (req,res)=>{
     file = req.files.fileUpload
 
     uploadPath = __dirname + '/uploadPath/' + file.name
+    
+
+    await verifyTypeFile(uploadPath, async (err)=>{
+        if(err){
+            return res.status(500).send(err)
+        }else{
+
+            let mailOptions = {
+                from: 'sendfiletokindle@gmail.com',
+                to: email,
+                subject: file.name,
+                text: file.name,
+                attachments:[
+                    {  
+                        path: uploadPath
+                    }
+                ]
+            }
+
+            send(mailOptions, cb)
+        }
+    })
+
 
     await file.mv(uploadPath, (err)=>{
         if(err){
@@ -37,20 +61,10 @@ app.post('/sendEmail', async (req,res)=>{
         }
     })
 
-        
-    let mailOptions = {
-        from: 'sendfiletokindle@gmail.com',
-        to: email,
-        subject: file.name,
-        text: file.name,
-        attachments:[
-            {  
-                path: uploadPath
-            }
-        ]
-    }
 
-    await send(mailOptions, cb)
+        
+ 
+
 
     function cb(error, info){
         console.log(error, info)
@@ -60,6 +74,7 @@ app.post('/sendEmail', async (req,res)=>{
             res.json({ status: 'error',  error})
         }
     }
+
 })
 
 app.get('/success', (req,res)=>{
