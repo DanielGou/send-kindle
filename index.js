@@ -62,15 +62,13 @@ app.post('/sendEmail', async (req,res)=>{
     })
 
 
-        
- 
-
-
     function cb(error, info){
         console.log(error, info)
         if(error === null){
+            deleteFile(uploadPath)
             res.redirect('/success')  
         }else{
+            deleteFile(uploadPath)
             res.json({ status: 'error',  error})
         }
     }
