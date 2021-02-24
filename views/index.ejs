@@ -23,7 +23,7 @@
           action="/sendEmail"
           method="post"
           enctype="multipart/form-data"
-          style="width: 100%; padding: 10px; margin-top: 10px; height: 50%"
+          style="width: 100%; padding: 10px; margin-top: 10px; height: 100%"
         >
           <div class="input-group flex-nowrap">
             <span class="input-group-text" id="addon-wrapping"
@@ -40,11 +40,14 @@
           </div>
           <br />
           <label class="d-flex justify-content-center">
-            <input type="file" name="fileUpload" id="File" />
-            <div class="align-middle">Choose File</div>
+            <input type="file" name="fileUpload" id="File" onchange="changeFile()" />
+            <div class="align-middle" id="inputArea">Choose File</div>
           </label>
           <div class="d-grid gap-2 col-6 mx-auto">
             <input type="submit" class="btn btn-primary mt-3" value="submit" />
+          </div>
+          <div style="color: red; margin-bottom: 0%; text-align: center;">
+            <%= typeof msg != 'undefined' ? msg : '' %>
           </div>
         </form>
       </div>
