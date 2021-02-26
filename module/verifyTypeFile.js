@@ -13,7 +13,11 @@ const extTypeRequire = [
     '.bmp',
     '.png',
     '.pdf',
-    '.mobi'
+    '.mobi',
+    '.rtf',
+    '.prc',
+    '.psz',
+    '.azw'
 ]
 
 async function verifyTypeFile(uploadPath, cb){

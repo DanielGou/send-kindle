@@ -30,7 +30,7 @@ app.post('/sendEmail', async (req,res)=>{
 
     if(!req.files || Object.keys(req.files).length === 0){
 
-        res.render('index',{
+        return res.status(400).render('index',{
             msg: 'No File were uploaded.'
         })
     }
@@ -43,11 +43,9 @@ app.post('/sendEmail', async (req,res)=>{
     await verifyTypeFile(uploadPath, async (err)=>{
         if(err){
 
-            res.render('index',{
+            return res.status(500).render('index',{
                 msg: err
             })
-
-            return res.status(500).send(err)
         }else{
 
             let mailOptions = {
@@ -69,7 +67,7 @@ app.post('/sendEmail', async (req,res)=>{
 
     await file.mv(uploadPath, (err)=>{
         if(err){
-            res.render('index',{
+            return res.status(500).render('index',{
                 msg: err
             })
         }
@@ -84,7 +82,7 @@ app.post('/sendEmail', async (req,res)=>{
         }else{
             deleteFile(uploadPath)
 
-            res.render('index',{
+            return res.status(500).render('index',{
                 msg: error
             })            
         }
