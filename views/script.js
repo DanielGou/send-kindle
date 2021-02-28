@@ -1,4 +1,4 @@
-const nameInputArea = document.getElementById('inputArea')
+const nameInputArea = document.getElementById('nameInputArea')
 const file = document.getElementById('File')
 const inputArea = document.getElementById('inputArea')
 

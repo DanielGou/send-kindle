@@ -22,17 +22,17 @@
         <form action="/sendEmail" method="post" enctype="multipart/form-data" style="width: 100%; padding: 10px; margin-top: 10px; height: 100%">
           <div class="input-group flex-nowrap">
             <span class="input-group-text" id="addon-wrapping">
-              Email to Send
+              Email para enviar
             </span>
             <input type="email" name="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="addon-wrapping"/>
           </div>
           <br />
           <label class="d-flex justify-content-center" id="inputArea">
-            <input type="file" name="fileUpload" id="File" data-browse-on-zone-click="true" onchange="changeNameFile()"/>
-            <div class="align-middle" id="nameInputArea">Choose File</div>
+            <input type="file" name="fileUpload" id="File" onchange="changeNameFile()"/>
+            <div class="align-middle" id="nameInputArea">Escolha o arquivo ou arrate aqui</div>
           </label>
           <div class="d-grid gap-2 col-6 mx-auto">
-            <input type="submit" class="btn btn-primary mt-3" value="submit" />
+            <input type="submit" class="btn btn-primary mt-3" value="Enviar" />
           </div>
           <div style="color: red; margin-bottom: 0%; text-align: center;">
             <%= typeof msg != 'undefined' ? msg : '' %>
@@ -44,10 +44,69 @@
     <div class="text-center">
       <div class="fs-1">Tutorial</div> 
 
-      <div>
+      <div class="m-5">
 
-        <strong>Passo 1.</strong> Abra esse <a href="https://www.amazon.com.br/hz/mycd/myx#/home/settings/payment" target="_blank">link</a> 
-        <img src="" alt="">
+        <div class="m-3"><strong>Passo 1.</strong> Abra a <a href="https://www.amazon.com.br/hz/mycd/myx#/home/settings/payment" target="_blank">amazon</a></div> 
+        <img src="./assets/main.jpg" class="img-fluid" style="width: 90%; margin-top: 15px;">
+
+      </div>
+
+      <hr>
+
+      <div class="m-5">
+
+        <div class="m-3"><strong>Passo 2.</strong> Verifique e adicione os email aprovados</div>
+        <img src="./assets/seta.jpg" class="img-fluid" style="width: 60%;">
+
+        <div class="m-3"> Adicione o email <strong>SendFileToKindle@gmail.com</strong></div>
+        <img src="./assets/addEmail.jpg" style="width: 60%;">
+
+      </div>
+
+      <hr>
+
+      <div class="m-5">
+
+        <div class="m-3"> <strong>Passo 3.</strong> Pegue o email do seu Kindle e adicione no campo <strong>Email para enviar</strong>, note que sempre termina com <strong>@kindle.com</strong></div>
+        <img src="./assets/focado1.jpg" style="width: 90%; height: 150px;">
+
+      </div>
+
+      <hr>
+
+      <div class="m-5">
+
+        <div class="mt-3"> 
+          <strong>Passo 4.</strong> Selecione o arquivo para enviar e Verifique os tipos de arquivos aceitos: 
+          <strong>
+            .doc, 
+            .docx, 
+            .rtf, 
+            .htm,
+            .html,
+            .txt, 
+            .jpg,
+            .gif,
+            .bmp,
+            .png,
+            .pdf,
+            .mobi,
+            .rtf, 
+            .prc,
+            .psz,
+            .azw. 
+
+        </strong>
+
+        </div>
+
+      </div>
+
+      <hr>
+
+      <div class="m-5">
+
+        <div class="m-5"> <strong>Passo 5.</strong> Envie o arquivo para o email do seu kindle, verifique seu email se a<strong> amazon </strong>pedio alguma permisão de envio. </div>
 
       </div>
 
