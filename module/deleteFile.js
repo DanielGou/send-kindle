@@ -1,7 +1,7 @@
 const fs = require('fs')
 
-function deleteFile(uploadPath){
-    fs.unlink(uploadPath, (err)=>{
+function deleteFile(Path){
+    fs.unlink(Path, (err)=>{
         if(err){
             console.log('erro delete')
             console.log(err)

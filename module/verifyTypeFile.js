@@ -5,7 +5,7 @@ const extTypeRequire = [
     '.doc',
     '.docx',
     '.rtf',
-    'htm',
+    '.htm',
     '.html',
     '.txt',
     '.jpg',
