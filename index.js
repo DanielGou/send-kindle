@@ -2,6 +2,7 @@ const express = require('express')
 const bodyPareser = require('body-parser')
 const fileUpload = require('express-fileupload')
 const ejs = require('ejs')
+const path = require("path")
 
 const send = require('./module/sendEmail')
 const deleteFile = require('./module/deleteFile')
@@ -29,7 +30,6 @@ app.post('/sendEmail', async (req,res)=>{
     const email = req.body.email
 
     if(!req.files || Object.keys(req.files).length === 0){
-
         return res.status(400).render('index',{
             msg: 'No File were uploaded.'
         })
@@ -81,7 +81,6 @@ app.post('/sendEmail', async (req,res)=>{
             res.redirect('/success')  
         }else{
             deleteFile(uploadPath)
-
             return res.status(500).render('index',{
                 msg: error
             })            

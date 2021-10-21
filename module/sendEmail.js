@@ -4,7 +4,7 @@ var mail = nodemailer.createTransport({
     service: 'gmail',
     auth:{
         user:'SendFileToKindle@gmail.com',
-        pass: 'ip18150290'
+        pass: 'xd1812009'
     }
 })
 
